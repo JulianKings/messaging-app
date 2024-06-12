@@ -70,8 +70,8 @@ function Login()
                 <form method="post" onSubmit={submitLogin}>
                 <div className="form-row">
                         <div className="form-input">
-                            <div className="form-input-label"><label htmlFor="userName">User Name</label></div>
-                            <div className="form-input-content"><input ref={addInput} type="text" id="userName" name="user_name" minLength="3" maxLength="12" required /></div>
+                            <div className="form-input-label"><label htmlFor="username">User Name</label></div>
+                            <div className="form-input-content"><input ref={addInput} type="text" id="username" name="user_name" minLength="3" maxLength="12" required /></div>
                             <div className="form-input-error"></div>
                         </div>
                     </div>
@@ -80,13 +80,19 @@ function Login()
                             <div className="form-input-label"><label htmlFor="password">Password</label></div>
                             <div className="form-input-content">
                                 <input ref={multiPasswordRef} type="password" id="password" name="user_password" required minLength="6" maxLength="32" />
-                                <div id="formPasswordLock" ref={passwordLock}></div>
+                                <div id="formPasswordLock" className='form-input-password-lock' ref={passwordLock}></div>
                             </div>
                             <div className="form-input-error"></div>
                         </div>
                     </div>
-                    <div className='form-row'>
+                    <div className='form-row form-button-holder'>
                         <button type='submit'>Sign in</button>
+                        <button type='button' onClick={ () => {
+                            navigate('/signup');
+                        }}>Sign up</button>
+                    </div>
+                    <div className='form-row form-button-holder-2'>
+                        <button type='button' className='long-button'>Sign in as a guest</button>
                     </div>
                 </form>
             </div>
@@ -112,7 +118,7 @@ function Login()
         if(!errorNoticed)
         {
             // ask the backEnd
-            fetch("https://localhost:3000/login", { 
+            fetch("http://localhost:3000/login", { 
                 method: 'POST',
                 headers: {'Content-Type': 'application/json'},
                 mode: "cors",
@@ -130,7 +136,6 @@ function Login()
                 {
                     if(response.responseStatus === 'validLogin')
                     {
-                        // Do JWT stuff
                         localStorage.setItem('sso_token', response.token);
                         navigate(0);
                     } else {

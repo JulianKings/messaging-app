@@ -18,7 +18,7 @@ function MainContent()
         if(localStorage.getItem('sso_token'))
         {
             const ssoToken = localStorage.getItem('sso_token');
-            fetch("https://localhost:3000/sso", {                
+            fetch("http://localhost:3000/sso", {                
                 headers: {
                     'Content-Type': 'application/json',
                     'Authorization': 'bearer ' + ssoToken

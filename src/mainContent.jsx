@@ -1,8 +1,9 @@
 
 /* eslint-disable react-hooks/exhaustive-deps */
-import { useEffect, useState } from 'react';
+import { Fragment, useEffect, useState } from 'react';
 import './content.css'
 import { Outlet, useLocation, useNavigate } from 'react-router-dom';
+import defaultProfile from './assets/pfp.jpg';
 function MainContent()
 {
     const [userObject, setUserObject] = useState(null);
@@ -61,9 +62,30 @@ function MainContent()
         }
     }, [location.pathname]);
 
+    let userContent = 'Loading information...';
+    if(userObject)
+        {
+            userContent = <Fragment>
+                <div className='navigation-profile'>
+                    <div className='navigation-image'>
+                        <img src={defaultProfile} />
+                    </div>
+                    <div className='navigation-caption'>
+                        <div className='navigation-caption-name'>
+                            {userObject.username}
+                        </div>
+                        <div className='navigation-caption-nick'>
+                            {userObject.username}
+                        </div>
+                    </div>
+                </div>
+            </Fragment>;
+        }
+
     return <>
     <div className='content-box'>
         <nav className='navigation'>
+            {userContent}
         </nav>
         <main className='content-holder'>
             <Outlet context={[userObject, setUserObject]} />

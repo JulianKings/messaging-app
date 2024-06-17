@@ -4,6 +4,7 @@ import ErrorPage from "./components/errorPage";
 import Index from "./components";
 import Login from "./components/login";
 import SignUp from "./components/signUp";
+import Logout from "./components/logout";
 
 const Router = () => {
     const router = createBrowserRouter([
@@ -31,6 +32,10 @@ const Router = () => {
       {
         path: "/signup",
         element: <SignUp />
+      },
+      {
+        path: "/logout",
+        element: <Logout />
       }
     ]);
   

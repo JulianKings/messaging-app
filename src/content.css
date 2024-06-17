@@ -15,11 +15,16 @@
     font-style: normal;
 }
 
-body, html {
+body, html, #root {
     width: 100%;
     height: 100%;
     margin: 0;
     padding: 0;
+}
+
+#root {
+    height: 100%;
+    display: flex;
 }
   
 body {
@@ -27,4 +32,57 @@ body {
     font-size: 1.1rem;
     background-color: #17181f;
     color: #fbf9ff;
+}
+
+.content-box {
+    display: grid;
+    grid-template-columns: 1fr 18rem;
+    width: 100%;
+}
+
+.navigation {
+    grid-area: 1 / 2 / 3 / 3;
+    padding: 1.8rem 0.6rem;    
+    background-color: #2b2d38;
+    border-left: 3px solid rgb(0, 0, 0, 0.45);
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+}
+
+.navigation .navigation-profile {
+    display: flex;
+    height: 38px;
+    gap: 0.85rem;
+    padding-left: 0.8rem;
+}
+
+.navigation-profile .navigation-image img {
+    height: 38px;
+    border-radius: 2.5rem;
+}
+
+.navigation-profile .navigation-caption {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.navigation-caption .navigation-caption-name {
+    font-size: 1rem;
+}
+
+.navigation-caption .navigation-caption-nick {
+    font-size: 0.9rem;
+    color: rgb(255, 255, 255, 0.65);
+}
+
+.content-holder {
+    grid-area: 1 / 1 / 2 / 2;
+    height: 400px;
+}
+
+.footer {
+    grid-area: 2 / 1 / 3 / 2;
+    align-self: flex-end;
 }

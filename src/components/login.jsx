@@ -92,7 +92,9 @@ function Login()
                         }}>Sign up</button>
                     </div>
                     <div className='form-row form-button-holder-2'>
-                        <button type='button' className='long-button'>Sign in as a guest</button>
+                        <button type='button' className='long-button' onClick={ () => {
+                            submitGuest();
+                        }}>Sign in as a guest</button>
                     </div>
                 </form>
             </div>
@@ -139,7 +141,6 @@ function Login()
                         localStorage.setItem('sso_token', response.token);
                         navigate(0);
                     } else {
-                        console.log(response.errors);
                         response.errors.forEach((error) => {
                             const result = inputElements.find((input) => {
                                 if(input.id === error.path)
@@ -165,6 +166,36 @@ function Login()
                 throw new Error(error);
             });
         }
+    }
+
+    function submitGuest()
+    {
+        // ask the backEnd
+        fetch("http://localhost:3000/login/guest", { 
+            method: 'GET',
+            headers: {'Content-Type': 'application/json'},
+            mode: "cors",
+            dataType: 'json',
+        })
+        .then((response) => {
+        if (response.status >= 400) {
+            throw new Error("server error");
+        }
+        return response.json();
+        })
+        .then((response) => {
+            if(response.responseStatus)
+            {
+                if(response.responseStatus === 'validLogin')
+                {
+                    localStorage.setItem('sso_token', response.token);
+                    navigate(0);
+                }       
+            }            
+        })
+        .catch((error) => {
+            throw new Error(error);
+        });
     }
 
     function onInputChange(inputEvent, input, prevSibling)

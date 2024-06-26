@@ -9,6 +9,7 @@
 .login-box {
     width: 30%;
     max-width: 40ch;
+    min-width: 24ch;
     background-color: #2b2d38;
     color: white;
     padding: 1.2rem 1.2rem;
@@ -174,7 +175,7 @@
 /* 
  Special interactions
 */
-@media (max-width: 800px) {
+@media (max-width: 650px) {
     .form-row {
         padding-top: 0rem;
         width: 100%;
@@ -194,7 +195,7 @@
     }    
 }
 
-@media (min-width: 800px) {
+@media (min-width: 650px) {
 
     .form-input-content input:required
     {

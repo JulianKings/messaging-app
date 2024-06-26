@@ -1,64 +1,32 @@
 
 /* eslint-disable react-hooks/exhaustive-deps */
-import { Fragment, useEffect, useState } from 'react';
+import { Fragment, useEffect } from 'react';
 import './content.css'
 import { Outlet, useLocation, useNavigate } from 'react-router-dom';
 import defaultProfile from './assets/pfp.jpg';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchUser, selectLoginStatus, selectUser } from './scripts/redux/user/userSlice';
 function MainContent()
 {
-    const [userObject, setUserObject] = useState(null);
+    const dispatch = useDispatch();
+    const userObject = useSelector(selectUser);
+    const userLoginStatus = useSelector(selectLoginStatus);
     const navigate = useNavigate();
     const location = useLocation();
 
     useEffect(() => {
-        if(!localStorage.getItem('sso_token'))
+        if(!localStorage.getItem('sso_token') || userLoginStatus)
         {
             navigate('/login');
         }
 
         if(localStorage.getItem('sso_token'))
         {
-            const ssoToken = localStorage.getItem('sso_token');
-            fetch("http://localhost:3000/sso", {                
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': 'bearer ' + ssoToken
-                },
-                mode: "cors",
-                dataType: 'json',
-             })
-            .then((response) => {
-                if(response.status === 401)
-                {
-                    // Awaiting for login or token expired
-
-                    if(localStorage.getItem('sso_token'))
-                    {
-                        localStorage.removeItem('sso_token');
-                    }
-                    // cleanup user if it exists
-                    if(userObject)
-                    {
-                        setUserObject(null);
-                    }
-
-                    navigate('/login');
-                    return null;
-                } else if (response.status >= 400) {
-                    throw new Error("server error");
-                }
-                return response.json();
-            })
-            .then((response) => {
-                if(response)
-                {
-                    // We are logged in
-                    setUserObject(response.user);
-                }
-            })
-            .catch((error) => {
-                throw new Error(error);
-            })
+            if(userObject === null)
+            {
+                const ssoToken = localStorage.getItem('sso_token');
+                dispatch(fetchUser(ssoToken));                
+            }
         }
     }, [location.pathname]);
 
@@ -88,7 +56,7 @@ function MainContent()
             {userContent}
         </nav>
         <main className='content-holder'>
-            <Outlet context={[userObject, setUserObject]} />
+            <Outlet />
         </main>
 
         <footer className='footer'>© 2024 Site developed as part of one of the final lessons for The Odin Project</footer>

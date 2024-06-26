@@ -1,0 +1,165 @@
+.community-holder {
+    display: flex;
+    align-items: center;
+    padding: 0.6rem 0.8rem;
+    height: 4rem;
+    background-color: #171717;
+    gap: 0.6rem;
+    overflow-x: auto;
+    max-width: calc(100vw - 20rem);
+}
+
+.community-item img {
+    height: 42px;
+    width: 42px;
+    border-radius: 6rem;
+}
+
+.community-add {
+    background-color: aliceblue;
+    border-radius: 6rem;
+    height: 36px;
+    width: 36px;
+    min-width: 36px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.community-search {
+    background: url('https://i.imgur.com/eeJQnXl.png');
+    background-repeat: repeat-x;
+    background-position-y: 28.5%;
+    height: 6rem;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.community-search-holder {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    position: relative;
+
+    min-width: 40ch;
+    max-width: 80ch;
+    width: 60%;
+}
+
+.community-search-icon {
+    position:absolute;
+    content: url("../assets/search.svg");
+    width: 22px;
+    height: 22px;
+    opacity: 0.6;
+    left: 0.7rem;
+    user-select: none
+}
+
+.community-search-holder input {
+    background-color: rgb(240, 248, 255, 0.9);
+    border: 1px solid #000;
+    border-radius: 6rem;
+    padding: 0.55rem 1rem;
+    padding-left: 2.4rem;
+    width: 100%;
+    box-shadow: 0.19rem 0.16rem 0 #000;
+}
+
+.community-search input:focus {
+    outline: none;
+    background-color: rgb(240, 248, 255, 1);
+}
+
+.community-big-item {
+    background-color: #2b2d38;
+    padding: 0.6rem 0.85rem;
+    padding-right: 0;
+    border: 1px solid aliceblue;
+    transition: box-shadow 0.3s ease-in-out;
+    border-radius: 0.15rem;    
+}
+
+.community-big-item:hover {
+    box-shadow: 0.12rem 0.16rem 0 rgb(240, 248, 255, 0.7);
+}
+
+.community-item-header {
+    display: flex;
+    align-items: center;
+    padding: 0.6rem 0;
+}
+
+.community-item-header img {
+    height: 42px;
+    width: 42px;
+    border-radius: 4rem;
+}
+
+.community-item-header .community-item-header-line {
+    height: 2px;
+    background-color: aliceblue;
+    flex: 1 0 auto;
+}
+
+.community-item-content {
+    padding-right: 0.85rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.community-item-content .community-item-name {
+    font-size: 1.2rem;
+}
+
+.community-item-content .community-item-description {
+    color: rgb(255, 255, 255, 0.8);
+    padding-right: 1.2rem;
+    font-size: 0.85rem;
+}
+
+.community-item-stats {
+    display: flex;
+    justify-content: space-between;
+    color: rgb(255, 255, 255, 0.8);
+    font-size: 0.8rem;
+    margin-top: 0.7rem;
+}
+
+.community-item-online, .community-item-members {
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+}
+
+.community-item-green-dot {
+    height: 7px;
+    width: 7px;
+    border-radius: 2px;
+    margin-bottom: 1px;
+    background-color: #8ad70e;
+}
+
+.community-item-member-image img {
+    height: 12px;
+    width: 12px;
+}
+
+.community-popular, .community-latest {
+    padding: 1.2rem 0.8rem;
+}
+
+.community-popular .community-popular-caption, .community-latest .community-latest-caption {
+    font-size: 1.6rem;
+    margin-bottom: 1.2rem;
+}
+
+.community-popular .community-popular-holder, .community-latest .community-latest-holder  {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(16rem, 1fr));
+    gap: 0.9rem;
+}

@@ -37,6 +37,7 @@ body {
 .content-box {
     display: grid;
     grid-template-columns: 1fr 18rem;
+    grid-template-rows: 1fr 2rem;
     width: 100%;
 }
 
@@ -75,14 +76,36 @@ body {
 .navigation-caption .navigation-caption-nick {
     font-size: 0.9rem;
     color: rgb(255, 255, 255, 0.65);
+    margin-top: 0.15rem;
+}
+
+.navigation-profile .navigation-menu {
+    display: flex;
+    align-items: center;
+    flex: 1 0 auto;
+    justify-content: flex-end;
+    padding-right: 1rem;
+    gap: 0.6rem;
+}
+
+.navigation-menu img {
+    height: 18px;
+    width: 18px;
+}
+
+.navigation-menu img:hover {
+    cursor: pointer;
 }
 
 .content-holder {
     grid-area: 1 / 1 / 2 / 2;
-    height: 400px;
 }
 
 .footer {
     grid-area: 2 / 1 / 3 / 2;
     align-self: flex-end;
+    display: flex;
+    justify-content: center;
+    padding: 0.45rem 0;
+    font-size: 0.8rem;
 }

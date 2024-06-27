@@ -20,8 +20,14 @@ export const userSlice = createSlice ({
         builder
             .addCase(fetchUser.fulfilled, (state, action) => {
                 const apiResponse = action.payload;
-                state.user = apiResponse.user;
-                state.invalidLogin = false;
+                if(apiResponse === null)
+                {
+                    state.user = null;
+                    state.invalidLogin = true;
+                } else {
+                    state.user = apiResponse.user;
+                    state.invalidLogin = false;
+                }
             })
             .addCase(fetchUser.rejected, (state, action) => {
                 state.error = action.error.message;

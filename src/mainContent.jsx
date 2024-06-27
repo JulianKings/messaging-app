@@ -8,6 +8,7 @@ import { Outlet, useLocation, useNavigate } from 'react-router-dom';
 import defaultProfile from './assets/pfp.jpg';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchUser, selectLoginStatus, selectUser } from './scripts/redux/user/userSlice';
+import FriendBar from './components/friendBar';
 function MainContent()
 {
     const dispatch = useDispatch();
@@ -54,6 +55,8 @@ function MainContent()
                         <img src={logoutIcon} alt='Logout' onClick={() => { navigate('/logout'); }} />
                     </div>
                 </div>
+
+                <FriendBar />
             </Fragment>;
         }
 

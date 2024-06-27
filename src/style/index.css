@@ -67,6 +67,7 @@
     padding-left: 2.4rem;
     width: 100%;
     box-shadow: 0.19rem 0.16rem 0 #000;
+    transition: background-color 0.2s ease-in;
 }
 
 .community-search input:focus {

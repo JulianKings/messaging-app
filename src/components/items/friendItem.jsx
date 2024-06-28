@@ -1,9 +1,11 @@
 import PropTypes from 'prop-types';
 import defaultProfile from '../../assets/pfp.jpg';
+import developerProfile from '../../assets/developer.png'
 
 function FriendItem({ friend })
 {
-    const profilePicture = (friend.profile_picture === '') ? defaultProfile : friend.profile_picture;             
+    const profilePicture = (friend.profile_picture === '') ? defaultProfile : 
+    (friend.profile_picture === 'developer') ? developerProfile : friend.profile_picture;             
     return <>
         <div className='friend-profile'>
             <div className='friend-image'>

@@ -1,11 +1,52 @@
+import { Fragment } from "react";
+import { useGetLatestCommunitiesQuery, useGetPopularCommunitiesQuery } from "../scripts/redux/query/communityApi";
 import CommunityItem from "./items/communityItem";
 
 function Communities() {
-    const mockCommunity = {
-        _id: 0,
-        name: 'Mock Community',
-        description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam',
-        profile_picture: ''
+    const { data: popularData, isLoading: popularIsLoading } = useGetPopularCommunitiesQuery();
+    const { data: latestData, isLoading: latestIsLoading } = useGetLatestCommunitiesQuery();
+
+    let popularContent = <Fragment>
+        <div className="community-loading-caption">
+            Loading communities...
+        </div>
+    </Fragment>;
+
+    if(!popularIsLoading)
+    {
+        if(popularData.length > 0)
+        {
+            popularContent = popularData.map((community) => {
+                return <CommunityItem key={community._id} community={community.group} />;
+            });
+        } else {
+            popularContent = <Fragment>
+                <div className="community-empty-caption">
+                    There are no communities currently.
+                </div>
+            </Fragment>
+        }
+    }
+
+    let latestContent = <Fragment>
+        <div className="community-loading-caption">
+            Loading communities...
+        </div>
+    </Fragment>;
+    if(!latestIsLoading)
+    {
+        if(latestData.length > 0)
+        {
+            latestContent = latestData.map((community) => {
+                return <CommunityItem key={community._id} community={community} />;
+            });
+        } else {
+            latestContent = <Fragment>
+                <div className="community-empty-caption">
+                    There are no communities currently.
+                </div>
+            </Fragment>
+        }
     }
 
     return <>
@@ -14,10 +55,7 @@ function Communities() {
                 Popular communities
             </div>
             <div className='community-popular-holder'>
-                <CommunityItem id={mockCommunity._id} community={mockCommunity} />
-                <CommunityItem id={mockCommunity._id} community={mockCommunity} />
-                <CommunityItem id={mockCommunity._id} community={mockCommunity} />
-                <CommunityItem id={mockCommunity._id} community={mockCommunity} />
+                {popularContent}
             </div>
         </div>
         <div className='community-latest'>
@@ -25,10 +63,7 @@ function Communities() {
                 Latest communities
             </div>
             <div className='community-latest-holder'>
-                <CommunityItem id={mockCommunity._id} community={mockCommunity} />
-                <CommunityItem id={mockCommunity._id} community={mockCommunity} />
-                <CommunityItem id={mockCommunity._id} community={mockCommunity} />
-                <CommunityItem id={mockCommunity._id} community={mockCommunity} />
+                {latestContent}
             </div>
         </div>
     </>;

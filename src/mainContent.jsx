@@ -18,7 +18,7 @@ function MainContent()
     const location = useLocation();
 
     useEffect(() => {
-        if(!localStorage.getItem('sso_token') || userLoginStatus)
+        if(!localStorage.getItem('sso_token'))
         {
             navigate('/login');
         }
@@ -33,10 +33,27 @@ function MainContent()
         }
     }, [location.pathname]);
 
+    useEffect(() => {
+        if(userLoginStatus)
+        {
+            navigate('/login');
+        }
+    }, [userLoginStatus]);
+
     let userContent = 'Loading information...';
     if(userObject)
         {
-            const profilePicture = (userObject.picture === '') ? defaultProfile : userObject.picture; 
+            const profilePicture = (userObject.picture === '' || userObject.picture === 'none') ? defaultProfile : userObject.picture;
+            let userNick = userObject.username;
+            if(userObject.role === 'guest')
+            {
+                userNick = userObject.username.toLowerCase() + "" + userObject._id;
+            } 
+            let userName = userObject.username;
+            if(userObject.role !== 'guest')
+            {
+                userName = userObject.first_name + ' ' + userObject.last_name;
+            }
             userContent = <Fragment>
                 <div className='navigation-profile'>
                     <div className='navigation-image'>
@@ -44,10 +61,10 @@ function MainContent()
                     </div>
                     <div className='navigation-caption'>
                         <div className='navigation-caption-name'>
-                            {userObject.username}
+                            {userName}
                         </div>
                         <div className='navigation-caption-nick'>
-                            {userObject.username}
+                            {userNick}
                         </div>
                     </div>
                     <div className='navigation-menu'>

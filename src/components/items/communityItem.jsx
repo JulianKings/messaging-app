@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import defaultProfile from '../../assets/pfp.jpg'
+import defaultProfile from '../../assets/default-community.png'
 import usersIcon from '../../assets/users.svg';
 
 function CommunityItem ({ community }) {

@@ -18,7 +18,7 @@ function FriendBar()
             const ssoToken = localStorage.getItem('sso_token');
             dispatch(fetchFriends(ssoToken)); 
         }
-    }, []);
+    }, [userObject]);
 
     let friendListComponent = '';
     if(userObject !== null && userObject.role === 'guest')

@@ -9,6 +9,7 @@ import defaultProfile from './assets/pfp.jpg';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchUser, selectLoginStatus, selectUser } from './scripts/redux/user/userSlice';
 import FriendBar from './components/friendBar';
+import DOMPurify from 'dompurify';
 function MainContent()
 {
     const dispatch = useDispatch();
@@ -44,6 +45,10 @@ function MainContent()
     if(userObject)
         {
             const profilePicture = (userObject.picture === '' || userObject.picture === 'none') ? defaultProfile : userObject.picture;
+            
+            const cleanPicture = (new DOMParser().parseFromString(profilePicture, "text/html")).documentElement.textContent;
+            const sanitizePicture = DOMPurify.sanitize(cleanPicture);
+
             let userNick = userObject.username;
             if(userObject.role === 'guest')
             {
@@ -57,7 +62,7 @@ function MainContent()
             userContent = <Fragment>
                 <div className='navigation-profile'>
                     <div className='navigation-image'>
-                        <img src={profilePicture} />
+                        <img src={sanitizePicture} />
                     </div>
                     <div className='navigation-caption'>
                         <div className='navigation-caption-name'>

@@ -87,14 +87,14 @@
     padding-right: 0.8rem;
 }
 
-.form-input-content input {
+.form-input-content input, .form-input-content select {
     padding: 0.4rem 0.6rem;
     border: 1px solid rgb(0, 0, 0, 0.3);
     border-radius: 2px;
     width: 100%;
 }
 
-.form-input-content input:focus {
+.form-input-content input:focus, .form-input-content select:focus {
     border: 1px solid #7e56f0;
     outline: none;
     box-shadow: 2px 2px 4px rgba(0,0,0,0.3);

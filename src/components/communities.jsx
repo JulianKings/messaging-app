@@ -17,7 +17,8 @@ function Communities() {
         if(popularData.length > 0)
         {
             popularContent = popularData.map((community) => {
-                return <CommunityItem key={community._id} community={community.group} />;
+                console.log(community);
+                return <CommunityItem key={community.group._id} community={community.group} memberCount={community.memberCount} />;
             });
         } else {
             popularContent = <Fragment>

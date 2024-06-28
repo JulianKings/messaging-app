@@ -1,0 +1,25 @@
+.community-form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 4rem;
+}
+
+.community-add-box {
+    width: 65%;
+    max-width: 85ch;
+    min-width: 52ch;
+    background-color: #2b2d38;
+    color: white;
+    padding: 1.2rem 1.2rem;
+    border-radius: 0.4rem;
+    box-shadow: 0.1rem 0.2rem 0.2rem rgb(0, 0, 0, 0.15);
+    padding: 1.5rem 2.5rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.community-add-box .form-row {
+    flex-direction: column;
+    gap: 0.6rem;
+}

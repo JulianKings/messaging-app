@@ -5,6 +5,7 @@ import Index from "./components";
 import Login from "./components/login";
 import SignUp from "./components/signUp";
 import Logout from "./components/logout";
+import AddCommunity from "./components/addCommunity";
 
 const Router = () => {
     const router = createBrowserRouter([
@@ -17,10 +18,10 @@ const Router = () => {
               errorElement: <ErrorPage />,
               children: [
                   {index: true, element: <Index />},
-                  /*{
-                    path: '/logout',
-                    element: <Logout />
-                  }*/
+                  {
+                    path: '/add_community',
+                    element: <AddCommunity />
+                  }
               ]
           }
         ]
